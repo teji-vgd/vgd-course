@@ -2,10 +2,13 @@
   "name": "vgd-course",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://teji-vgd.github.io/vgd-course/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -18,18 +21,19 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "vite-plugin-commonjs": "0.10.4",
+    "ace-builds": "1.39.0",
+    "escodegen": "2.1.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "vite": "^6.2.0",
-    "react-ace": "14.0.1",
-    "ace-builds": "1.39.0",
-    "p5": "1.11.3",
     "esprima": "4.0.1",
-    "escodegen": "2.1.0",
+    "esquery": "1.6.0",
     "estemplate": "0.5.1",
-    "esquery": "1.6.0"
+    "gh-pages": "^6.3.0",
+    "globals": "^15.15.0",
+    "p5": "1.11.3",
+    "react-ace": "14.0.1",
+    "vite": "^6.2.0",
+    "vite-plugin-commonjs": "0.10.4"
   }
 }
