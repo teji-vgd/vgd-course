@@ -1,6 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
+# Build and Deploy app to github pages
 name: Build and Deploy
 
 on:
@@ -8,8 +6,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  BuildAndDeploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
 
     strategy:
       matrix:
@@ -26,12 +27,6 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test --if-present
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-    runs-on: ubuntu-latest
-    steps:
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.7.3
       with:
