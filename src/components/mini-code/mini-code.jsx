@@ -7,6 +7,9 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 import mie from '../../lib/mie.js';
 
+import iconEditorOutline from '../../assets/editor-outline.svg';
+import iconEditorFilled from '../../assets/editor-filled.svg';
+
 const MiniEditor = props => {
     const {
         code,
@@ -41,63 +44,53 @@ const MiniEditor = props => {
         cleanup.current = myP5.remove;
 	};
 
+    const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
+
+
     useEffect(() => {
         play();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [code]); // This insures we run only once on load
 
-	// toggleEditor() {
-	// 	if (this.editorElem.style.display == 'none') {
-	// 		this.showEditor();
-	// 	} else {
-	// 		this.hideEditor();
-	// 	}
-	// }
-
-	// showEditor() {
-	// 	let ed = this.editorElem;
-	// 	let pr = this.previewElem;
-	// 	ed.style.display = 'block';
-	// 	pr.style.width = 'unset';
-	// 	this.editor.focus();
-	// }
-
-	// hideEditor() {
-	// 	let ed = this.editorElem;
-	// 	let pr = this.previewElem;
-	// 	pr.style.width = '100%';
-	// 	ed.style.display = 'none';
-	// }
+	const toggleEditor = () => {
+		setEditorVisible(!editorVisible);
+	};
     
     return (
+        <div style={{
+            width: props.width || (props.horiz ? '480px':'300px'),
+            height: props.height ||  (props.horiz ? '240px' : '400px')
+        }}>
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}
                 style={{
-                    width: props.width || '',
-                    height: props.height || ''
-
+                    width: props.horiz ? (editorVisible ? '100%' : 'min-content') : 'unset',
+                    height: editorVisible ? '100%' : 'unset'
                 }}
             >
                 <div className={'mie-title'}>
                     <div className={'mie-logo'}></div>
                     <span>
-                        {props.title}
+                        {props.title || 'Example Sketch'}
                     </span>
-                    { /*props.editorButton && */
-                        (<button 
-                            className={'mie-edit'}
-                            onClick={() => {
-                                // toggleEditor();
-                            }}
-                        >
-                            {'{ }'}
-                        </button>)
-                    }
-                    <button
-                        className={'mie-play'}
-                        title={'replay'}
-                        onClick={() => play()}
-                    />
+                    <div className={'mie-header-buttons'}>
+                        { !props.editorDisabled &&
+                            (<button 
+                                className={'mie-edit'}
+                                onClick={() => {
+                                    toggleEditor();
+                                }}
+                            >
+                                <img src={editorVisible ? iconEditorOutline : iconEditorFilled}>
+                                </img>
+                            </button>)
+                        }
+                        <button
+                            className={'mie-play'}
+                            title={'replay'}
+                            onClick={() => play()}
+                        />
+                    </div>
                 </div>
                 <div
                     className={'mie-main'}
@@ -108,7 +101,7 @@ const MiniEditor = props => {
                     >
                         {/* Sketch will get populated here */}
                     </div>
-                    {!mie.editorDisabled && (
+                    {editorVisible && (
                         <ReactAce
                             className={'mie-editor'}
                             mode={'javascript'}
@@ -144,6 +137,7 @@ const MiniEditor = props => {
                 </div>
                 
             </div>
+        </div>
         );
 };
 
