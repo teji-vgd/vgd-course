@@ -15,8 +15,8 @@ Cras commodo nibh ac risus pulvinar, pulvinar sodales nisl feugiat. Duis id orci
 const Home = () => {
     return <div className='home-main'>
       <h2>Welcome to the Spring 2025 Video Game Development Course!</h2>
-      {introText.split('\n').map(paragraph =>
-        <p>{paragraph}</p>
+      {introText.split('\n').map((paragraph,i) =>
+        <p key={`p${i}`}>{paragraph}</p>
       )}
     </div>;
 };
