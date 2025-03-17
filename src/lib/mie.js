@@ -1,6 +1,5 @@
 /* Mini Editor Library, adapted (and react-ified) from https://github.com/quinton-ashley/mie */
 
-import p5 from 'p5';
 import p5Convert from './p5-global2instance/p5-global2instance';
 
 let mie = {};
@@ -81,8 +80,10 @@ mie.lang.p5.play = function (code, previewElem) {
             ${mySketchStr}
         `);
     }
-
-	return new p5(s, previewElem.current);
+    
+    // p5 and p5play are now pulled in from top level script tags
+    // eslint-disable-next-line no-undef
+    return new p5(s, previewElem.current);
 };
 
 mie.lang.q5 = mie.lang.p5;

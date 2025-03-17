@@ -77,6 +77,10 @@ h1 {
   width: unset;
 }
 
+.error-msg {
+  color: red;
+}
+
 /* .mie.vert .mie-preview {
   width: 100%;
 } */

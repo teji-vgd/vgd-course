@@ -34,14 +34,22 @@ const MiniEditor = props => {
         }
         lines++;
     }
+    // Keep track of errors while trying to run the code
+    const [error, setError] = useState('');
 
     const cleanup = useRef(null);
 	const play = () => {
+        setError(''); // Clear any previous errors when re-running the code
         if (cleanup.current !== null) cleanup.current();
 
-        const myP5 = mie.lang[codeLang].play.call(this, updatedCode, previewElem);
-
-        cleanup.current = myP5.remove;
+        try {
+            const myP5 = mie.lang[codeLang].play.call(this, updatedCode, previewElem);
+            cleanup.current = myP5.remove;
+        } catch (e) {
+            console.log(e);
+            setError(e.message);
+            console.log('Error type: ', typeof error);
+        }
 	};
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
@@ -49,8 +57,12 @@ const MiniEditor = props => {
 
     useEffect(() => {
         play();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [code]); // This insures we run only once on load
+        
+        return () => {
+            cleanup.current();
+        };
+
+    });
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
@@ -101,6 +113,7 @@ const MiniEditor = props => {
                     >
                         {/* Sketch will get populated here */}
                     </div>
+                    {error && <span className='error-msg'>{error}</span>}
                     {editorVisible && (
                         <ReactAce
                             className={'mie-editor'}
