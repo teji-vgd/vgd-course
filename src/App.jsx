@@ -9,26 +9,26 @@ const App = () => {
 
   return (
     <Router
-      basename='/vgd-course'
+      basename='/vgd-course/' // The trailing slash is not recommended for basename but it helps with a local bug
     >
       <div>
         <h1>Video Game Development</h1>
         <nav className='nav'>
-          <NavLink to={`/`} end
+          <NavLink to={''} end
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
             }
           >
             Home
           </NavLink>
-          <NavLink to={`/tutorials`}
+          <NavLink to={`tutorials`}
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
             }
           >
             Interactive Tutorials
           </NavLink>
-          <NavLink to={`/examples`}
+          <NavLink to={`examples`}
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
             }
@@ -39,8 +39,8 @@ const App = () => {
         <div className={'page'}>
             <Routes>
               <Route path={`/`} exact element={<Home />} />
-              <Route path={`/tutorials`} element={<Tutorials />} />
-              <Route path={`/examples`} element={<LayoutExamples />} />
+              <Route path={`tutorials`} element={<Tutorials />} />
+              <Route path={`examples`} element={<LayoutExamples />} />
             </Routes>
         </div>
       </div>
