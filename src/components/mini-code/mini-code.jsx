@@ -21,12 +21,9 @@ const MiniEditor = props => {
     const previewElem = useRef(null);
 
     const codeLang = lang || 'p5';
-        
-    // TODO - WIP need to figure this piece out...
-    if (props.baseId) {
-        // If there's a base id, save the base sketch
-        mie.bases[props.baseId] = code.slice(0, code.lastIndexOf('}'));
-    }
+
+    // TODO there might be a more convenient method for having a hidden base sketch
+    let getFullSketch = props.baseSketchFun || (c => c);
 
     let lines = props.lines || 0;
     if (!lines) {
@@ -48,7 +45,7 @@ const MiniEditor = props => {
         if (myP5) myP5.remove();
 
         try {
-            myP5 = mie.lang[codeLang].play.call(this, updatedCode, previewElem);
+            myP5 = mie.lang[codeLang].play.call(this, getFullSketch(updatedCode), previewElem);
         } catch (e) { // TODO there's a bug here where sometimes the previous sketch doesn't get removed properly...
             console.log(e);
             setError(e.message);
@@ -78,7 +75,8 @@ const MiniEditor = props => {
     return (
         <div style={{
             width: props.width || (props.horiz ? '480px':'300px'),
-            height: props.height ||  (props.horiz ? '240px' : '400px')
+            // height: props.height ||  (props.horiz ? '240px' : '400px')
+            height: props.height ||  (props.horiz ? '240px' : 'fit-content')
         }}>
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}

@@ -1,10 +1,13 @@
 import MiniEditor from '../components/mini-code/mini-code.jsx';
-import {setupStarter, mouseCircles} from '../sketches/setupExample.js';
+import {setupStarter, mouseCircles, mouseCirclesFun, mouseCirclesSnippet} from '../sketches/setupExample.js';
 const LayoutExamples = () => {
     return (
       <div className='grid'>
         <div className="card">
           <MiniEditor title='Example, no extras' code={mouseCircles}/>
+        </div>
+        <div className="card">
+          <MiniEditor title='Example hidden base sketch' baseSketchFun={mouseCirclesFun} code={mouseCirclesSnippet}/>
         </div>
         <div className="card">
           <MiniEditor title='Example, editor hidden' hideEditor code={mouseCircles}/>
@@ -21,10 +24,9 @@ const LayoutExamples = () => {
         <div className="card">
           <MiniEditor title='Example, w=500' width='500px' code={mouseCircles}/>
         </div>
-        
         <div className="card">
           <MiniEditor title='Example, w,h=500' width='500px' height='500px' code={mouseCircles}/>
-        </div>  
+        </div>
       </div>
     );
 };
