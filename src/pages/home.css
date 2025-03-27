@@ -3,6 +3,33 @@
   text-align: left;
 }
 
+a {
+  color: #5090ff;
+}
+
+code {
+  color: #5090ff;
+  font-weight: bold;
+}
+
 h2 {
+  grid-area: header;
   text-align: center;
+}
+
+.section {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "desc editor";
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.writingSection {
+  min-width: 300px;
+  max-width: 500px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 0 20px;
 }

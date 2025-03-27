@@ -12,27 +12,6 @@ mie.lang ??= {
 };
 mie.bases = {};
 
-/* Probably don't need these loading helpers... */
-
-// mie.loadMinis = (elem) => {
-// 	elem = elem || document;
-// 	let scripts = [...elem.getElementsByTagName('script')];
-// 	for (let script of scripts) {
-// 		if (script.type.includes('mie')) {
-// 			mie.push(new MiniEditor(script));
-// 		}
-// 	}
-// };
-
-// mie.load = () => {
-// 	if (typeof window.ace == 'undefined') {
-// 		console.log('mie will run without the ace editor, which was not loaded.');
-// 		mie.editorDisabled = true;
-// 	}
-// 	if (mie.autoLoad !== false) mie.loadMinis();
-// 	if (mie.ready) mie.ready();
-// };
-
 mie.lang.p5 = {};
 
 mie.lang.p5.functionNames = [

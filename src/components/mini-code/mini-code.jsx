@@ -1,14 +1,15 @@
 import {useState, useRef, useEffect} from 'react';
 import './mini-code.css';
-import ReactAce from 'react-ace';
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/ext-language_tools";
+import CodeMirror from '@uiw/react-codemirror';
+import { dracula } from '@uiw/codemirror-theme-dracula';
+import {javascript} from '@codemirror/lang-javascript';
 
 import mie from '../../lib/mie.js';
 
-import iconEditorOutline from '../../assets/editor-outline.svg';
-import iconEditorFilled from '../../assets/editor-filled.svg';
+import iconEditorGrayed from '../../assets/terminal-icon-gray.svg';
+import iconEditorDark from '../../assets/terminal-icon-blue.svg';
+import playIcon from '../../assets/play-circle-blue.svg';
+import logo from '/vgd-pm-favicon.svg';
 
 const MiniEditor = props => {
     const {
@@ -37,19 +38,24 @@ const MiniEditor = props => {
     // Keep track of errors while trying to run the code
     const [error, setError] = useState('');
 
-    const cleanup = useRef(null);
+    // const cleanup = useRef(null);
+    let myP5 = {
+        remove: () => {console.log('Removing empty...')}
+    };
 	const play = () => {
         setError(''); // Clear any previous errors when re-running the code
-        if (cleanup.current !== null) cleanup.current();
+        // if (cleanup.current !== null) cleanup.current();
+        if (myP5) myP5.remove();
 
         try {
-            const myP5 = mie.lang[codeLang].play.call(this, updatedCode, previewElem);
-            cleanup.current = myP5.remove;
-        } catch (e) {
+            myP5 = mie.lang[codeLang].play.call(this, updatedCode, previewElem);
+        } catch (e) { // TODO there's a bug here where sometimes the previous sketch doesn't get removed properly...
             console.log(e);
             setError(e.message);
             console.log('Error type: ', typeof error);
         }
+
+        // cleanup.current = myP5.remove;
 	};
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
@@ -58,9 +64,10 @@ const MiniEditor = props => {
     useEffect(() => {
         play();
         
-        return () => {
-            cleanup.current();
-        };
+        // return () => {
+        //     cleanup.current();
+        // };
+        return myP5.remove;
 
     });
 
@@ -81,7 +88,9 @@ const MiniEditor = props => {
                 }}
             >
                 <div className={'mie-title'}>
-                    <div className={'mie-logo'}></div>
+                    <div className={'mie-logo'}>
+                        <img src={logo}></img>
+                    </div>
                     <span>
                         {props.title || 'Example Sketch'}
                     </span>
@@ -93,62 +102,36 @@ const MiniEditor = props => {
                                     toggleEditor();
                                 }}
                             >
-                                <img src={editorVisible ? iconEditorOutline : iconEditorFilled}>
+                                <img src={editorVisible ? iconEditorDark : iconEditorGrayed}>
                                 </img>
                             </button>)
                         }
                         <button
                             className={'mie-play'}
-                            title={'replay'}
+                            title={'run code'}
                             onClick={() => play()}
-                        />
+                        >
+                            <img src={playIcon} />
+                        </button>
                     </div>
                 </div>
                 <div
-                    className={'mie-main'}
+                    className={'mie-preview'}
+                    ref={previewElem}
                 >
-                    <div
-                        className={'mie-preview'}
-                        ref={previewElem}
-                    >
-                        {/* Sketch will get populated here */}
-                    </div>
                     {error && <span className='error-msg'>{error}</span>}
-                    {editorVisible && (
-                        <ReactAce
-                            className={'mie-editor'}
-                            mode={'javascript'}
-                            theme={'monokai'}
-                            value={updatedCode}
-                            showGutter={false}
-                            showPrintMargin={false}
-                            useWrapMode={true}
-                            onChange={setUpdatedCode}
-                            setOptions={{
-                                useWorker: false,
-                                showLineNumbers: true,
-                                minLines: 1,
-                                maxLines: lines,
-                                fontSize: '14px',
-                                tabSize: 2,
-                                
-                                enableBasicAutocompletion: [
-                                    {
-                                        getCompletions: (editor, session, pos, prefix, callback) => {
-                                            callback(null, mie.lang[codeLang].completions || []);
-                                        }
-                                    }
-                                ],
-                                enableLiveAutocompletion: true
-                            }}
-                            // onChange={onChange}
-                            // name="UNIQUE_ID_OF_DIV"
-                            editorProps={{ $blockScrolling: true }}
-                        />
-                    )}
-
+                    {/* Sketch will get populated here */}
                 </div>
-                
+                {editorVisible && (
+                    <CodeMirror
+                        width="100%"
+                        height="100%"
+                        value={updatedCode}
+                        theme={dracula}
+                        extensions={[javascript()]}
+                        onChange={setUpdatedCode}
+                    />
+                )}
             </div>
         </div>
         );

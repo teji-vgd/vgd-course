@@ -1,8 +1,12 @@
 #root {
   display: flex;
   flex-direction: column;
-  text-align: center;
   max-width: 100%;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .nav {
@@ -10,40 +14,47 @@
   flex-direction: row;
   justify-content: flex-start;
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
   border: 1px solid #aaaa;
   border-radius: 10px;
 }
 
 .page {
   margin: 0 auto;
-  width: 90%;
-  margin-top: 8px;
+  max-width: 80%;
+  margin-top: 20px;
   border: 1px solid #aaaa;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .nav-button {
   border-radius: 8px;
   padding: 10px;
-  background-color: #003500;
+  /* background-color: #003500; */
+  background-color: #404080;
   color: #fff;
   font-family: "Space Grotesk", sans-serif;
   margin: 0.5rem;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .nav-button.pending {
-  background-color: green;
+  /* background-color: green; */
+  background-color: #4080ff;
   color: white;
 }
 
 .nav-button:hover {
-  background-color: green;
+  /* background-color: green; */
+  background-color: #4080ff;
   color: white;
 }
 
 .nav-button.active {
-  background-color: green;
+  /* background-color: green; */
+  background-color: #4080ff;
 }
 
 .grid {
@@ -58,4 +69,11 @@
 
 .read-the-docs {
   color: #888;
+}
+
+h1 {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
