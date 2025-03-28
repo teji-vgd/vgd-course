@@ -54,12 +54,11 @@ mie.lang.p5.play = function (code, previewElem) {
         mySketchStr = mySketchStr.slice(0, mySketchStr.lastIndexOf('};'));
 
         // Replacement for: with (p) eval(code)
-        eval(`
-            var { ${Object.keys($_p).join(",")} } = $_p;
-            ${mySketchStr}
-        `);
+		eval(`
+			var { ${Object.keys($_p).join(",")} } = $_p;
+			${mySketchStr}
+		`);
     }
-    
     // p5 and p5play are now pulled in from top level script tags
     // eslint-disable-next-line no-undef
     return new p5(s, previewElem.current);

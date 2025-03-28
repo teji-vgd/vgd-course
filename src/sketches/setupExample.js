@@ -1,27 +1,27 @@
 const setupStarter = 
-`function setup () {
+`function setup() {
   createCanvas(200, 200);
   background('blue');
 }`;
 
 const mouseCirclesFun = code => {
-  return `function setup () {
+  return `function setup() {
   createCanvas(200, 200);
   background('blue');
 }
 
-function draw () {
+function draw() {
   ${code}
 }`;
 }
 
 const mouseCircles = 
-`function setup () {
+`function setup() {
   createCanvas(200, 200);
   background('blue');
 }
 
-function draw () {
+function draw() {
   circle(mouseX, mouseY, 10);
 }`;
 

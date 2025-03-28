@@ -97,8 +97,10 @@ button {
 .mie-preview {
   display: flex;
   align-self: center;
-  /* justify-self: center; */
-  flex: 0;
+  /* flex: 0; */
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
 }
 
 .mie.horiz .mie-preview {
@@ -107,6 +109,9 @@ button {
 
 .error-msg {
   color: red;
+  text-align: center;
+  word-wrap: break-word;
+  width: 200px;
 }
 
 /* .mie.vert .mie-preview {

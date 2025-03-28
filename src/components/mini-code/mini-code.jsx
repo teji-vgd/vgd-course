@@ -37,26 +37,34 @@ const MiniEditor = props => {
 
     // const cleanup = useRef(null);
     let myP5 = {
-        remove: () => {console.log('Removing empty...')}
+        remove: () => {
+            console.log('Removing empty...')
+        }
     };
 	const play = () => {
         setError(''); // Clear any previous errors when re-running the code
-        // if (cleanup.current !== null) cleanup.current();
-        if (myP5) myP5.remove();
+        //if (cleanup.current !== null) cleanup.current();
+        if (myP5) {
+            myP5.remove();
+        }
 
         try {
+            console.log('creating canvas');
             myP5 = mie.lang[codeLang].play.call(this, getFullSketch(updatedCode), previewElem);
         } catch (e) { // TODO there's a bug here where sometimes the previous sketch doesn't get removed properly...
             console.log(e);
             setError(e.message);
             console.log('Error type: ', typeof error);
+
+            if (previewElem.current.firstChild && previewElem.current.firstChild.className === 'error-msg') {
+                previewElem.current.replaceChildren(previewElem.current.firstChild);
+            }
         }
 
-        // cleanup.current = myP5.remove;
+        //cleanup.current = myP5.remove;
 	};
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
-
 
     useEffect(() => {
         play();
@@ -65,7 +73,6 @@ const MiniEditor = props => {
         //     cleanup.current();
         // };
         return myP5.remove;
-
     });
 
 	const toggleEditor = () => {
