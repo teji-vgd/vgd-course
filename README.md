@@ -29,5 +29,6 @@ Icons:
 
 - [Play Circle Icon](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:play_circle:FILL@0;wght@0;GRAD@0;opsz@NaN&icon.size=24&icon.color=%23e3e3e3&icon.set=Material+Symbols)
 - [Terminal Icon](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:play_circle:FILL@0;wght@0;GRAD@0;opsz@NaN&icon.size=24&icon.color=%23e3e3e3&icon.set=Material+Symbols)
+- [Reset Code Icon](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:restart_alt:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e3e3e3&icon.query=reset)
 
 Favicon and Logo designed with Canva.

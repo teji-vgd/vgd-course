@@ -117,6 +117,7 @@ const MiniEditor = props => {
                         { !props.editorDisabled &&
                             (<button 
                                 className={'mie-edit'}
+                                title={editorVisible ? 'hide editor' : 'show editor'}
                                 onClick={() => {
                                     toggleEditor();
                                 }}
