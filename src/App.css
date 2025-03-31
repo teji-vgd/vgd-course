@@ -9,19 +9,48 @@
   font-style: normal;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.header img {
+  width: 100px;
+  height: 100px;
+}
+
+.footer {
+  width: 70%;
+  border: 1px solid #aaaa;
+  border-radius: 10px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer p {
+  padding: 0 20px;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin: 0 auto;
-  width: 80%;
+  width: 70%;
   border: 1px solid #aaaa;
   border-radius: 10px;
 }
 
 .page {
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 70%;
   margin-top: 20px;
   border: 1px solid #aaaa;
   border-radius: 10px;
@@ -77,3 +106,7 @@ h1 {
   font-weight: 400;
   font-style: normal;
 }
+
+/* .decorated {
+  background-image: url("/div-decorator.svg");
+} */

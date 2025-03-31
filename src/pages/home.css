@@ -9,7 +9,8 @@ a {
 
 code {
   color: #5090ff;
-  font-weight: bold;
+  font-weight: 900;
+  font-size: large;
 }
 
 h2 {
@@ -17,19 +18,33 @@ h2 {
   text-align: center;
 }
 
-.section {
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "desc editor";
-  gap: 20px;
+.wrap-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: flex-start;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .writingSection {
-  min-width: 300px;
-  max-width: 500px;
+  min-width: 200px;
+  max-width: 80%;
+  height: fit-content;
   border: 1px solid white;
   border-radius: 8px;
   padding: 0 20px;
+}
+
+.two-col .writingSection {
+  max-width: 600px;
+}
+
+.half-row .writingSection {
+  max-width: 400px;
 }

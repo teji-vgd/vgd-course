@@ -5,6 +5,7 @@ import LayoutExamples from './pages/examples.jsx';
 import Tutorials from './pages/tutorials.jsx';
 import Home from './pages/home.jsx';
 import Footer from './pages/footer.mdx';
+import GettingStarted from './pages/getting-started.jsx';
 import vgdLogo from '/vgd-logo-no-text.svg'
 
 const App = () => {
@@ -26,6 +27,13 @@ const App = () => {
           >
             Home
           </NavLink>
+          <NavLink to={`gettingStarted`}
+            className={({ isActive, isPending }) =>
+              isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
+            }
+          >
+            Getting Started
+          </NavLink>
           <NavLink to={`tutorials`}
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
@@ -44,6 +52,7 @@ const App = () => {
         <div className={'page'}>
             <Routes>
               <Route path={`/`} exact element={<Home />} />
+              <Route path={'gettingStarted'} element={<GettingStarted/>} />
               <Route path={`tutorials`} element={<Tutorials />} />
               <Route path={`examples`} element={<LayoutExamples />} />
             </Routes>
