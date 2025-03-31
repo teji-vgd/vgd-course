@@ -120,23 +120,25 @@ const MiniEditor = props => {
                         </button>
                     </div>
                 </div>
-                <div
-                    className={'mie-preview'}
-                    ref={previewElem}
-                >
-                    {error && <span className='error-msg'>{error}</span>}
-                    {/* Sketch will get populated here */}
+                <div className={'mie-main'}>
+                    <div
+                        className={'mie-preview'}
+                        ref={previewElem}
+                    >
+                        {error && <span className='error-msg'>{error}</span>}
+                        {/* Sketch will get populated here */}
+                    </div>
+                    {editorVisible && (
+                        <CodeMirror
+                            width="100%"
+                            height="100%"
+                            value={updatedCode}
+                            theme={dracula}
+                            extensions={[javascript()]}
+                            onChange={setUpdatedCode}
+                        />
+                    )}
                 </div>
-                {editorVisible && (
-                    <CodeMirror
-                        width="100%"
-                        height="100%"
-                        value={updatedCode}
-                        theme={dracula}
-                        extensions={[javascript()]}
-                        onChange={setUpdatedCode}
-                    />
-                )}
             </div>
         </div>
         );
