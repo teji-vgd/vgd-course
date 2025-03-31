@@ -1,4 +1,5 @@
 import MiniEditor from '../components/mini-code/mini-code.jsx';
+import PlayIcon from '../components/inline-play-icon/inline-play-icon.jsx';
 import {mouseCircles} from '../sketches/setupExample.js'
 import {
     firstSketch, 
@@ -18,7 +19,6 @@ import {
     gravityBroken, 
     gravityFixed
 } from '../sketches/gettingStarted.js';
-import playIcon from '../assets/play-circle-white.svg';
 
 ## Week 1 - Getting Started
 
@@ -30,10 +30,10 @@ This week we'll be learning about some basic components of games: the [canvas]()
 <div className='wrap-row two-col'>
     <div className='writingSection'>
     ### Setting up the Canvas
-    In p5.js, the program the computer to draw pictures and animations onto a `canvas`. You can create a canvas and draw shapes on the screen and program movements for the shapes.
+    With p5.js, we can program the computer to draw pictures and animations onto a `canvas`. You can create a canvas, draw shapes on it, and program movements for the shapes to create animations or games.
     These programs are called sketches.
 
-    Try changing the dimensions and background color of the canvas. 
+    **Try changing the dimensions and background color of the canvas.**
     
     What do the two numbers inside `createCanvas()` represent?
     </div>
@@ -51,7 +51,7 @@ This week we'll be learning about some basic components of games: the [canvas]()
     You can also represent color as 3 numbers, each between `0` and `255`, e.g. `(203, 20, 134)`. The 3 different numbers represent red, green, and blue (or RGB). Computers can mix shades of these 3 colors to create a new color (similar to mixing paint).
     * Example: bright red would be represented as `(255, 0, 0)` or purple might be represented as a mix of red and blue `(180, 0, 240)`.
 
-    Try changing the background color of the canvas by changing what's inside the `background()` function, using the three methods above.
+    **Try changing the background color of the canvas by changing what's inside the `background()` function, using the three methods above.**
     </div>
 
     <div className='wrap-row'>
@@ -73,6 +73,8 @@ This week we'll be learning about some basic components of games: the [canvas]()
     The `draw` function runs many many times. In game design, this is often called "the draw loop." The `draw` function runs and updates the canvas 60 times every second to create animations.
 
     There is another helpful keyword `frameCount` which keeps tracks of how many frames have run so far (from the last time the code was run).
+
+    **Press <PlayIcon /> to see the background color slowly change based on the `frameCount` as the draw loop runs.**
     </div>
     <MiniEditor title={'setup and draw'} baseSketchFun={hueRotateFun} code={hueRotate} />
 </div>
@@ -92,7 +94,7 @@ This week we'll be learning about some basic components of games: the [canvas]()
 
     For example, adding a width `w` and height `h` to the sprite defines how big or small it is and whether it's a square or rectangle.
     Try changing the numbers after `sprite.w =` and `sprite.h =` to see what happens to the sprite shape.
-    Click <img src={playIcon} /> above to run your changed code.
+    **Click <PlayIcon /> above to run your changed code.**
     </div>
     <MiniEditor horiz title={'Sprite Dimensions'} code={spriteDimensions} />
 
@@ -117,7 +119,7 @@ This week we'll be learning about some basic components of games: the [canvas]()
 
 Sprites interact in a world. The `world` contains properties that are helpful for adding game physics like gravity affecting how sprites fall down.
 
-Press <img src={playIcon} /> to see the gravity affect the sprite on the right.
+**Press <PlayIcon /> to see the gravity affect the sprite on the right.**
 
 Try changing `world.gravity.y` to observe what happens to the sprite.
 </div>

@@ -18,12 +18,21 @@ h2 {
   text-align: center;
 }
 
+p {
+  font-weight: 400;
+}
+
+strong {
+  font-weight: 780;
+}
+
 .wrap-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-start;
+  /* width: 100%; */
   max-width: 100%;
   margin-bottom: 10px;
 }

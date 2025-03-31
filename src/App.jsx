@@ -34,7 +34,7 @@ const App = () => {
           >
             Getting Started
           </NavLink>
-          <NavLink to={`tutorials`}
+          {/* <NavLink to={`tutorials`}
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
             }
@@ -47,7 +47,7 @@ const App = () => {
             }
           >
             Editor Layout Examples
-          </NavLink>
+          </NavLink> */}
         </nav>
         <div className={'page'}>
             <Routes>
