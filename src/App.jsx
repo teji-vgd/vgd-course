@@ -1,9 +1,11 @@
+import { BrowserRouter as Router, Routes, Route, NavLink} from 'react-router';
 import './App.css'
 
 import LayoutExamples from './pages/examples.jsx';
 import Tutorials from './pages/tutorials.jsx';
 import Home from './pages/home.jsx';
-import { BrowserRouter as Router, Routes, Route, NavLink} from 'react-router';
+import Footer from './pages/footer.mdx';
+import vgdLogo from '/vgd-logo-no-text.svg'
 
 const App = () => {
 
@@ -12,7 +14,10 @@ const App = () => {
       basename='/vgd-course/' // The trailing slash is not recommended for basename but it helps with a local bug
     >
       <div>
-        <h1>Video Game Development</h1>
+        <div className='header'>
+          <img src={vgdLogo} width={'40px'} height={'40px'} />
+          <h1>Video Game Development</h1>
+        </div>
         <nav className='nav'>
           <NavLink to={''} end
             className={({ isActive, isPending }) =>
@@ -44,6 +49,7 @@ const App = () => {
             </Routes>
         </div>
       </div>
+      <div className='footer'><Footer /></div>
     </Router>
   );
 }

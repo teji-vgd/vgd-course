@@ -1,5 +1,20 @@
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/Orbitron/Orbitron-VariableFont_wght.ttf) format("truetype");
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Space Grotesk", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,8 +28,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#p5play-intro {
+  display: none;
+}
+
 a {
-  font-weight: 500;
+  font-weight: 600;
   color: #646cff;
   text-decoration: inherit;
 }
