@@ -9,6 +9,7 @@ import mie from '../../lib/mie.js';
 import iconEditorGrayed from '../../assets/terminal-icon-gray.svg';
 import iconEditorDark from '../../assets/terminal-icon-blue.svg';
 import playIcon from '../../assets/play-circle-blue.svg';
+import resetIcon from '../../assets/reset-icon-black.svg';
 import logo from '/vgd-pm-favicon.svg';
 
 const MiniEditor = props => {
@@ -17,6 +18,7 @@ const MiniEditor = props => {
         lang
     } = props;
     
+    const initialCode = code;
     const [updatedCode, setUpdatedCode] = useState(code);
     const previewElem = useRef(null);
 
@@ -56,13 +58,18 @@ const MiniEditor = props => {
             setError(e.message);
             console.log('Error type: ', typeof error);
 
-            if (previewElem.current.firstChild && previewElem.current.firstChild.className === 'error-msg') {
-                previewElem.current.replaceChildren(previewElem.current.firstChild);
+            const errorMessageElem = previewElem.current.firstChild;
+            if (errorMessageElem && errorMessageElem.className === 'error-msg') {
+                previewElem.current.replaceChildren(errorMessageElem);
             }
         }
 
         //cleanup.current = myP5.remove;
 	};
+
+    const reset = () => {
+        setUpdatedCode(initialCode);
+    }
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
 
@@ -100,6 +107,13 @@ const MiniEditor = props => {
                         {props.title || 'Example Sketch'}
                     </span>
                     <div className={'mie-header-buttons'}>
+                        <button
+                            className={'mie-play'}
+                            title={'reset code'}
+                            onClick={() => reset()}
+                        >
+                            <img src={resetIcon} />
+                        </button>
                         { !props.editorDisabled &&
                             (<button 
                                 className={'mie-edit'}
