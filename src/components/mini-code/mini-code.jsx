@@ -79,7 +79,9 @@ const MiniEditor = props => {
         // return () => {
         //     cleanup.current();
         // };
-        return myP5.remove;
+        return () => {
+            myP5.remove();
+        };
     });
 
 	const toggleEditor = () => {
