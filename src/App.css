@@ -7,7 +7,7 @@
   font-weight: 500;
   font-style: normal;
 
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
     margin: 20px 20px 10px;
     gap: 30px;
   }
@@ -33,6 +33,7 @@
   @media (max-width: 500px) {
     flex-direction: column;
     gap: 0;
+    margin: 0;
   }
 }
 
@@ -93,9 +94,12 @@
   margin-bottom: 20px;
 
   @media (max-width: 500px) {
-    max-width: 100%;
     border: none;
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
 }
 
