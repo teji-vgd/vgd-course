@@ -1,6 +1,10 @@
 .home-main {
   padding: 20px;
   text-align: left;
+
+  @media (max-width: 500px) {
+    padding: 0;
+  }
 }
 
 a {
@@ -35,6 +39,11 @@ strong {
   /* width: 100%; */
   max-width: 100%;
   margin-bottom: 10px;
+
+  @media (max-width: 500px) {
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .text-center {
@@ -48,12 +57,24 @@ strong {
   border: 1px solid white;
   border-radius: 8px;
   padding: 0 20px;
+
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
 }
 
 .two-col .writingSection {
   max-width: 600px;
+
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
 }
 
 .half-row .writingSection {
   max-width: 400px;
+
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
 }

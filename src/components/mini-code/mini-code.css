@@ -12,6 +12,24 @@
   outline: none;
 }
 
+.mini-editor-container {
+  width: 300px;
+  height: 'fit-content';
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+.mini-editor-container--horizontal-style {
+  width: 480px;
+  height: 240px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
 .mie-main {
   display: flex;
   align-items: center;
@@ -176,8 +194,9 @@ button {
 }
 
 @media screen and (max-width: 600px) {
+  /* Why do we need this? For screens with  width < 600px, editor panel won't be shown */
   .mie.horiz .mie-main {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 
   .mie.horiz .mie-editor {
