@@ -91,8 +91,7 @@ const MiniEditor = props => {
     return (
         <div style={{
             width: props.width || (props.horiz ? '480px':'300px'),
-            // height: props.height ||  (props.horiz ? '240px' : '400px')
-            height: props.height ||  (props.horiz ? '240px' : 'fit-content')
+            height: props.height ||  (props.horiz ? '230px' : 'fit-content')
         }}>
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}
@@ -105,9 +104,9 @@ const MiniEditor = props => {
                     <div className={'mie-logo'}>
                         <img src={logo}></img>
                     </div>
-                    <span>
+                    <div className='title-div'>
                         {props.title || 'Example Sketch'}
-                    </span>
+                    </div>
                     <div className={'mie-header-buttons'}>
                         <button
                             className={'mie-play'}

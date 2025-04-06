@@ -6,6 +6,7 @@
   box-sizing: border-box;
   background-color: #242440;
   border: 1px solid white;
+  overflow: hidden;
 }
 
 .mie * {
@@ -36,7 +37,7 @@
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   background-color: white;
-  padding: 6px;
+  padding: 0 6px;
 }
 
 h1 {
@@ -55,12 +56,16 @@ button {
   height: 20px;
 }
 
-.mie-title span {
+.mie-title .title-div {
   color: #242440;
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
 }
 
 .mie-header-buttons {
@@ -72,12 +77,6 @@ button {
 .mie-header-buttons img {
   width: 20px;
   height: 20px;
-}
-
-.mie-logo {
-  width: 28px;
-  background: white;
-  border-radius: 4px;
 }
 
 .mie-logo img {
@@ -96,7 +95,7 @@ button {
   align-self: center;
   /* flex: 0; */
   flex-direction: column;
-  height: 200px;
+  height: fit-content;
   justify-content: center;
 }
 
