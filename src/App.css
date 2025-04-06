@@ -1,4 +1,5 @@
 #root {
+  margin: 20px 20px 10px;
   display: flex;
   flex-direction: column;
   max-width: 100%;
@@ -8,7 +9,6 @@
   font-style: normal;
 
   @media (max-width: 768px) {
-    margin: 20px 20px 10px;
     gap: 30px;
   }
 }
@@ -23,8 +23,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -43,6 +42,10 @@
 }
 
 .header .main-title {
+  @media (max-width: 893px) {
+    width: 400px;
+  }
+
   @media (max-width: 500px) {
     font-size: 3rem;
   }
@@ -60,7 +63,8 @@
   text-align: center;
   margin-bottom: 20px;
 
-  @media (max-width: 500px) {
+  @media (max-width: 1024px) {
+    width: 100%;
     max-width: 100%;
     margin-bottom: 0;
     font-size: 0.85em;
@@ -99,6 +103,10 @@
   }
 
   @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
     max-width: 100%;
   }
 }
@@ -151,6 +159,11 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
 }
 
 /* .decorated {

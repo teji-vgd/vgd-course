@@ -1,6 +1,9 @@
 .home-main {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   text-align: left;
+  gap: 20px;
 
   @media (max-width: 500px) {
     padding: 0;
@@ -47,6 +50,7 @@ strong {
 
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
+    justify-content: space-evenly;
   }
 }
 
@@ -55,7 +59,7 @@ strong {
   gap: 20px;
   flex-wrap: wrap;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     justify-content: space-evenly;
   }
 }
@@ -72,21 +76,14 @@ strong {
   border-radius: 8px;
   padding: 0 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     max-width: 100%;
   }
+
 }
 
 .two-col .writingSection {
-  max-width: 600px;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
-}
-
-.half-row .writingSection {
-  max-width: 400px;
+  flex: 1;
 
   @media (max-width: 768px) {
     max-width: 100%;
