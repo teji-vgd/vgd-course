@@ -150,6 +150,17 @@ button {
   border-bottom-right-radius: 7px;
 }
 
+.cm-theme ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+.cm-theme ::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(200,200,200,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 .mie.vert .mie-editor {
   border-top: 2px solid #2a6b48;
   border-bottom-left-radius: 2px;
