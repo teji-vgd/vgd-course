@@ -37,20 +37,28 @@ strong {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: flex-start;
   max-width: 100%;
   margin-bottom: 10px;
+  justify-content: space-evenly;
 
   @media (max-width: 768px) {
-    width: 100%;
     align-items: center;
     flex-direction: column;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (max-width: 1300px) {
     width: 100%;
-    justify-content: space-evenly;
+  }
+}
+
+.writing-editor-group {
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 }
 
@@ -59,7 +67,7 @@ strong {
   gap: 20px;
   flex-wrap: wrap;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     justify-content: space-evenly;
   }
 }
@@ -70,22 +78,21 @@ strong {
 
 .writingSection {
   min-width: 200px;
-  max-width: 80%;
   height: fit-content;
   border: 1px solid white;
   border-radius: 8px;
   padding: 0 20px;
-
-  @media (max-width: 1024px) {
-    max-width: 100%;
-  }
-
 }
 
 .two-col .writingSection {
   flex: 1;
+  min-width: 300px;
 
   @media (max-width: 768px) {
     max-width: 100%;
+  }
+
+  @media (max-width: 890px) {
+    min-width: 200px;
   }
 }
