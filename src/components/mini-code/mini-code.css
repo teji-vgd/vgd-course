@@ -207,11 +207,6 @@ button {
 }
 
 @media screen and (max-width: 600px) {
-  /* Why do we need this? For screens with  width < 600px, editor panel won't be shown */
-  .mie.horiz .mie-main {
-    /* flex-direction: column; */
-  }
-
   .mie.horiz .mie-editor {
     border-left: 0 solid #ccc;
     border-top: 2px solid #ccc;
