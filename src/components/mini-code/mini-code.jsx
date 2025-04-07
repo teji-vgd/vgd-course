@@ -37,22 +37,20 @@ const MiniEditor = props => {
     // Keep track of errors while trying to run the code
     const [error, setError] = useState('');
 
-    // const cleanup = useRef(null);
+    const cleanup = useRef(null);
     let myP5 = {
         remove: () => {
             console.log('Removing empty...')
         }
     };
-	const play = () => {
+	const play = (code) => {
+        const codeToRun = code ?? updatedCode;
         setError(''); // Clear any previous errors when re-running the code
-        //if (cleanup.current !== null) cleanup.current();
-        if (myP5) {
-            myP5.remove();
-        }
+        if (cleanup.current !== null) cleanup.current();
 
         try {
             console.log('creating canvas');
-            myP5 = mie.lang[codeLang].play.call(this, getFullSketch(updatedCode), previewElem);
+            myP5 = mie.lang[codeLang].play.call(this, getFullSketch(codeToRun), previewElem);
         } catch (e) { // TODO there's a bug here where sometimes the previous sketch doesn't get removed properly...
             console.log(e);
             setError(e.message);
@@ -64,25 +62,25 @@ const MiniEditor = props => {
             }
         }
 
-        //cleanup.current = myP5.remove;
+        cleanup.current = myP5.remove;
 	};
 
     const reset = () => {
         setUpdatedCode(initialCode);
+        play(initialCode);
     }
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
-
+    
     useEffect(() => {
         play();
         
-        // return () => {
-        //     cleanup.current();
-        // };
         return () => {
-            myP5.remove();
+            cleanup.current();
         };
-    });
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
