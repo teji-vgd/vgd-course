@@ -66,10 +66,8 @@ strong {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-
-  @media (max-width: 1300px) {
-    justify-content: space-evenly;
-  }
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .text-center {
