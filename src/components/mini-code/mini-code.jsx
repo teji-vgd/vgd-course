@@ -101,9 +101,9 @@ const MiniEditor = props => {
                     <div className={'mie-logo'}>
                         <img src={logo}></img>
                     </div>
-                    <span>
+                    <div className='title-div'>
                         {props.title || 'Example Sketch'}
-                    </span>
+                    </div>
                     <div className={'mie-header-buttons'}>
                         <button
                             className={'mie-play'}
