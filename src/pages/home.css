@@ -1,6 +1,13 @@
 .home-main {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   text-align: left;
+  gap: 20px;
+
+  @media (max-width: 500px) {
+    padding: 0;
+  }
 }
 
 a {
@@ -30,11 +37,38 @@ strong {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: flex-start;
-  /* width: 100%; */
   max-width: 100%;
   margin-bottom: 10px;
+  justify-content: space-evenly;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
+}
+
+.writing-editor-group {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.grouped-editors {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .text-center {
@@ -43,7 +77,6 @@ strong {
 
 .writingSection {
   min-width: 200px;
-  max-width: 80%;
   height: fit-content;
   border: 1px solid white;
   border-radius: 8px;
@@ -51,9 +84,14 @@ strong {
 }
 
 .two-col .writingSection {
-  max-width: 600px;
-}
+  flex: 1;
+  min-width: 300px;
 
-.half-row .writingSection {
-  max-width: 400px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  @media (max-width: 890px) {
+    min-width: 200px;
+  }
 }

@@ -20,7 +20,7 @@ import {
     gravityFixed
 } from '../sketches/gettingStarted.js';
 
-## Week 1 - Getting Started
+## Getting Started
 
 <span className='text-center'>
 This week we'll be learning about some basic components of games: the [canvas](), [sprites](), and [gravity]().
@@ -55,9 +55,11 @@ This week we'll be learning about some basic components of games: the [canvas]()
     </div>
 
     <div className='wrap-row'>
-    <MiniEditor title={'Exploring Colors'} baseSketchFun={exploringColorsFun} code={exploringColorsSingleNum} />
+    <div className='grouped-editors'>
     <MiniEditor title={'Exploring Colors'} baseSketchFun={exploringColorsFun} code={exploringColorsString} />
+    <MiniEditor title={'Exploring Colors'} baseSketchFun={exploringColorsFun} code={exploringColorsSingleNum} />
     <MiniEditor title={'Exploring Colors'} baseSketchFun={exploringColorsFun} code={exploringColorsRGB} />
+    </div>
     </div>
 </div>
 
@@ -80,57 +82,70 @@ This week we'll be learning about some basic components of games: the [canvas]()
 </div>
 
 ## Sprites
-<div className='wrap-row half-row'>
-    <div className='writingSection'>
-    Sprites are interactive components of your game, this includes game characters, objects, walls, etc.
-    Anything the player may interact with is a sprite.
+<div className='wrap-row two-col'>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        Sprites are interactive components of your game, this includes game characters, objects, walls, etc.
+        Anything the player may interact with is a sprite.
 
-    Use `new Sprite()` to create a sprite.
+        Use `new Sprite()` to create a sprite.
+        </div>
+        <MiniEditor horiz title={'Creating a Sprite'} code={spriteStarter} />
     </div>
-    <MiniEditor horiz title={'Creating a Sprite'} code={spriteStarter} />
 
-    <div className='writingSection'>
-    A sprite can have different characteristics that determine how it looks or even acts.
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        A sprite can have different characteristics that determine how it looks or even acts.
 
-    For example, adding a width `w` and height `h` to the sprite defines how big or small it is and whether it's a square or rectangle.
-    Try changing the numbers after `sprite.w =` and `sprite.h =` to see what happens to the sprite shape.
-    **Click <PlayIcon /> above to run your changed code.**
+        For example, adding a width `w` and height `h` to the sprite defines how big or small it is and whether it's a square or rectangle.
+        Try changing the numbers after `sprite.w =` and `sprite.h =` to see what happens to the sprite shape.
+        **Click <PlayIcon /> above to run your changed code.**
+        </div>
+        <MiniEditor horiz title={'Sprite Dimensions'} code={spriteDimensions} />
     </div>
-    <MiniEditor horiz title={'Sprite Dimensions'} code={spriteDimensions} />
-
-    <div className='writingSection'>
-    Sprites can also be other shapes. For example, adding a diameter `d` to the sprite turns the sprite into a circle.
+    
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        Sprites can also be other shapes. For example, adding a diameter `d` to the sprite turns the sprite into a circle.
+        </div>
+        <MiniEditor horiz title={'Circle Sprite'} code={circleSprite} />
     </div>
-    <MiniEditor horiz title={'Circle Sprite'} code={circleSprite} />
 
-    <div className='writingSection'>
-    You can change where the sprite shows up on the screen by controlling its `x` and `y` positions.
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        You can change where the sprite shows up on the screen by controlling its `x` and `y` positions.
+        </div>
+        <MiniEditor horiz title={'Sprite Position'} code={spritePosition} />
     </div>
-    <MiniEditor horiz title={'Sprite Position'} code={spritePosition} />
     <div className='wrap-row'>
+        <div className='grouped-editors'>
         <MiniEditor title={'Sprite X'} baseSketchFun={spriteFun} code={spriteX} />
         <MiniEditor title={'Sprite Y'} baseSketchFun={spriteFun} code={spriteY} />
+        </div>
     </div>
 </div>
 
 ## World
-<div className='wrap-row'>
-<div className='writingSection'>
+<div className='wrap-row two-col'>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
 
-Sprites interact in a world. The `world` contains properties that are helpful for adding game physics like gravity affecting how sprites fall down.
+        Sprites interact in a world. The `world` contains properties that are helpful for adding game physics like gravity affecting how sprites fall down.
 
-**Press <PlayIcon /> to see the gravity affect the sprite on the right.**
+        **Press <PlayIcon /> to see the gravity affect the sprite on the right.**
 
-Try changing `world.gravity.y` to observe what happens to the sprite.
-</div>
+        Try changing `world.gravity.y` to observe what happens to the sprite.
+        </div>
 
-<MiniEditor horiz title={'Gravity'} code={gravityBroken} />
+        <MiniEditor horiz title={'Gravity'} code={gravityBroken} />
+    </div>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        In the previous example, the sprite leaves a trail behind as it falls. This is because the sprite is secretly getting drawn to the screen over and over again at a rate of 60 times per second. So as it's falling the movement gets captured frame by frame. However, we're not telling the background to draw again and again along with the sprite.
+        </div>
 
-<div className='writingSection'>
-In the previous example, the sprite leaves a trail behind as it falls. This is because the sprite is secretly getting drawn to the screen over and over again at a rate of 60 times per second. So as it's falling the movement gets captured frame by frame. However, we're not telling the background to draw again and again along with the sprite.
-</div>
-
-<MiniEditor horiz title={'Gravity (Fixed)'} code={gravityFixed} />
+        <MiniEditor horiz title={'Gravity (Fixed)'} code={gravityFixed} />
+    </div>
 </div>
 
 {/* ## Gravity

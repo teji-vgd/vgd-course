@@ -14,10 +14,10 @@ const App = () => {
     <Router
       basename='/vgd-course/' // The trailing slash is not recommended for basename but it helps with a local bug
     >
-      <div>
+      <div className='main-content'>
         <div className='header'>
           <img src={vgdLogo} width={'40px'} height={'40px'} />
-          <h1>Video Game Development</h1>
+          <h1 class='main-title'>Video Game Development</h1>
         </div>
         <nav className='nav'>
           <NavLink to={''} end

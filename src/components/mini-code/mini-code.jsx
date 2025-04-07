@@ -87,10 +87,7 @@ const MiniEditor = props => {
 	};
     
     return (
-        <div style={{
-            width: props.width || (props.horiz ? '480px':'300px'),
-            height: props.height ||  (props.horiz ? '230px' : 'fit-content')
-        }}>
+        <div className={`mini-editor-container ${props.horiz ? 'mini-editor-container--horizontal-style' : ''}`}>
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}
                 style={{
