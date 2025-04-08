@@ -51,10 +51,9 @@ const MiniEditor = props => {
         try {
             console.log('creating canvas');
             myP5 = mie.lang[codeLang].play.call(this, getFullSketch(codeToRun), previewElem);
-        } catch (e) { // TODO there's a bug here where sometimes the previous sketch doesn't get removed properly...
+        } catch (e) {
             console.log(e);
             setError(e.message);
-            console.log('Error type: ', typeof error);
 
             const errorMessageElem = previewElem.current.firstChild;
             if (errorMessageElem && errorMessageElem.className === 'error-msg') {

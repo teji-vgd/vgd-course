@@ -118,6 +118,8 @@ button {
   flex-direction: column;
   height: fit-content;
   justify-content: center;
+  align-items: center;
+  min-height: 200px;
 }
 
 .mie.horiz .mie-preview {
