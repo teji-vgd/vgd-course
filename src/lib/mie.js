@@ -10,7 +10,6 @@ mie.lang ??= {
 		play: function (code) {}
 	}
 };
-mie.bases = {};
 
 mie.lang.p5 = {};
 
@@ -36,11 +35,6 @@ mie.lang.p5.functionNames = [
 ];
 
 mie.lang.p5.play = function (code, previewElem) {
-    // TODO WIP handle having a base sketch
-	if (!code.includes('function setup')) {
-		code = mie.bases[this.base || 0] + code + '}';
-	}
-
     const s = ($_p) => {
         console.log("Input Code: ", code);
 

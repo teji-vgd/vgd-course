@@ -17,7 +17,7 @@ const App = () => {
       <div className='main-content'>
         <div className='header'>
           <img src={vgdLogo} width={'40px'} height={'40px'} />
-          <h1 class='main-title'>Video Game Development</h1>
+          <h1 className='main-title'>Video Game Development</h1>
         </div>
         <nav className='nav'>
           <NavLink to={''} end
