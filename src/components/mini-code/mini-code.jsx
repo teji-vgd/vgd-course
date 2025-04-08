@@ -41,6 +41,8 @@ const MiniEditor = props => {
     const [codeToRun, setCodeToRun] = useState(initialCode);
     
     const reset = () => {
+        // Clear any error
+        setError('');
         // Display the initial code in the editor
         setUpdatedCode(initialCode);
         // Run the initial code
@@ -54,7 +56,7 @@ const MiniEditor = props => {
         // Resetting the error here ensures that the error stays displayed if the user
         // clicks play several times (without updating any of the code)
 
-        // Reset the error
+        // Clear any error
         setError('');
         // Run the updated code
         setCodeToRun(updatedCode);
