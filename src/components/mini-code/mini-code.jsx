@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect, useCallback} from 'react';
 import './mini-code.css';
 import CodeMirror from '@uiw/react-codemirror';
 import { dracula } from '@uiw/codemirror-theme-dracula';
@@ -17,15 +17,13 @@ const MiniEditor = props => {
         code,
         lang
     } = props;
-    
-    const initialCode = code;
-    const [updatedCode, setUpdatedCode] = useState(code);
-    const previewElem = useRef(null);
-
     const codeLang = lang || 'p5';
-
-    // TODO there might be a more convenient method for having a hidden base sketch
-    let getFullSketch = props.baseSketchFun || (c => c);
+    const initialCode = code;
+    const [playedCode, setPlayedCode] = useState(code);
+    const [editorCode, setEditorCode] = useState(code);
+    const previewElem = useRef(null);
+    // Keep track of errors while trying to run the code
+    const [error, setError] = useState('');
 
     let lines = props.lines || 0;
     if (!lines) {
@@ -34,17 +32,13 @@ const MiniEditor = props => {
         }
         lines++;
     }
-    // Keep track of errors while trying to run the code
-    const [error, setError] = useState('');
 
     const cleanup = useRef(null);
-    let myP5 = {
-        remove: () => {
-            console.log('Removing empty...')
-        }
-    };
-	const play = (code) => {
-        const codeToRun = code ?? updatedCode;
+    const myP5 = useRef(null);
+
+    const play = useCallback((code) => {
+        // TODO there might be a more convenient method for having a hidden base sketch
+        let getFullSketch = props.baseSketchFun || (c => c);
         setError(''); // Clear any previous errors when re-running the code
         if (cleanup.current !== null) {
             cleanup.current();
@@ -52,36 +46,30 @@ const MiniEditor = props => {
 
         try {
             console.log('creating canvas');
-            myP5 = mie.lang[codeLang].play.call(this, getFullSketch(codeToRun), previewElem);
+            myP5.current = mie.lang[codeLang].play.call(this, getFullSketch(code), previewElem);
         } catch (e) {
             console.log(e);
             setError(e.message);
-
-            const errorMessageElem = previewElem.current.firstChild;
-            if (errorMessageElem && errorMessageElem.className === 'error-msg') {
-                previewElem.current.replaceChildren(errorMessageElem);
-            }
         }
 
-        cleanup.current = myP5.remove;
-	};
+        cleanup.current = myP5.current.remove;
+	}, [codeLang, props]);
 
     const reset = () => {
-        setUpdatedCode(initialCode);
+        setPlayedCode(initialCode);
         play(initialCode);
     }
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
     
     useEffect(() => {
-        play();
+        play(playedCode);
         
         return () => {
             cleanup.current();
         };
     
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [error]);
+    }, [error, playedCode, play]);
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
@@ -126,7 +114,7 @@ const MiniEditor = props => {
                         <button
                             className={'mie-play'}
                             title={'run code'}
-                            onClick={() => play()}
+                            onClick={() => setPlayedCode(editorCode)}
                         >
                             <img src={playIcon} />
                         </button>
@@ -144,10 +132,10 @@ const MiniEditor = props => {
                         <CodeMirror
                             width="100%"
                             height="100%"
-                            value={updatedCode}
+                            value={editorCode}
                             theme={dracula}
                             extensions={[javascript()]}
-                            onChange={setUpdatedCode}
+                            onChange={setEditorCode}
                         />
                     )}
                 </div>
