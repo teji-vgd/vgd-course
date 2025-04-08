@@ -39,7 +39,23 @@ const MiniEditor = props => {
     // Code to run is updated when we click the play or reset buttons
     // (which then triggers the useEffect hook)
     const [codeToRun, setCodeToRun] = useState(initialCode);
+
+    // A silly piece of state that updates whenever we click the play or reset buttons
+    // this is to ensure that we actually trigger the useEffect hook again if we
+    // click play or reset again and again without changing the code.
+    const [playCount, setPlayCount] = useState(0);
+
+    const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
     
+    const handlePlayClick = () => {
+        // Clear any error
+        setError('');
+        // Run the updated code
+        setCodeToRun(updatedCode);
+        // Ensure play runs when clicked even if nothing above has changed
+        setPlayCount(c => c + 1);
+    };
+
     const reset = () => {
         // Clear any error
         setError('');
@@ -47,19 +63,8 @@ const MiniEditor = props => {
         setUpdatedCode(initialCode);
         // Run the initial code
         setCodeToRun(initialCode);
-    };
-
-    const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
-    
-    const handlePlayClick = () => {
-        // The useEffect hook is also triggered on error state change
-        // Resetting the error here ensures that the error stays displayed if the user
-        // clicks play several times (without updating any of the code)
-
-        // Clear any error
-        setError('');
-        // Run the updated code
-        setCodeToRun(updatedCode);
+        // Ensure reset runs when clicked even if nothing above has changed
+        setPlayCount(c => c + 1);
     };
 
     useEffect(() => {
@@ -90,7 +95,7 @@ const MiniEditor = props => {
             myP5.remove();
         };
 
-    }, [codeLang, baseSketchFun, codeToRun, error]); // codeToRun and error are the only ones that should actually change
+    }, [codeLang, baseSketchFun, codeToRun, playCount]); // codeToRun and playCount are the only ones that should actually change
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
