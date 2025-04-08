@@ -15,6 +15,7 @@ import logo from '/vgd-pm-favicon.svg';
 const MiniEditor = props => {
     const {
         code,
+        baseSketchFun,
         lang
     } = props;
     
@@ -24,9 +25,6 @@ const MiniEditor = props => {
 
     const codeLang = lang || 'p5';
 
-    // TODO there might be a more convenient method for having a hidden base sketch
-    let getFullSketch = props.baseSketchFun || (c => c);
-
     let lines = props.lines || 0;
     if (!lines) {
         for (let c of code) {
@@ -34,58 +32,71 @@ const MiniEditor = props => {
         }
         lines++;
     }
+
     // Keep track of errors while trying to run the code
     const [error, setError] = useState('');
 
-    const cleanup = useRef(null);
-    let myP5 = {
-        remove: () => {
-            console.log('Removing empty...')
-        }
-    };
-	const play = (code) => {
-        const codeToRun = code ?? updatedCode;
-        setError(''); // Clear any previous errors when re-running the code
-        if (cleanup.current !== null) {
-            cleanup.current();
-        }
-
-        try {
-            console.log('creating canvas');
-            myP5 = mie.lang[codeLang].play.call(this, getFullSketch(codeToRun), previewElem);
-        } catch (e) {
-            console.log(e);
-            setError(e.message);
-
-            const errorMessageElem = previewElem.current.firstChild;
-            if (errorMessageElem && errorMessageElem.className === 'error-msg') {
-                previewElem.current.replaceChildren(errorMessageElem);
-            }
-        }
-
-        cleanup.current = myP5.remove;
-	};
-
+    // Code to run is updated when we click the play or reset buttons
+    // (which then triggers the useEffect hook)
+    const [codeToRun, setCodeToRun] = useState(initialCode);
+    
     const reset = () => {
+        // Display the initial code in the editor
         setUpdatedCode(initialCode);
-        play(initialCode);
-    }
+        // Run the initial code
+        setCodeToRun(initialCode);
+    };
 
     const [editorVisible, setEditorVisible] = useState(!props.editorDisabled && !props.hideEditor);
     
+    const handlePlayClick = () => {
+        // The useEffect hook is also triggered on error state change
+        // Resetting the error here ensures that the error stays displayed if the user
+        // clicks play several times (without updating any of the code)
+
+        // Reset the error
+        setError('');
+        // Run the updated code
+        setCodeToRun(updatedCode);
+    };
+
     useEffect(() => {
-        play();
+        let myP5;
         
-        return () => {
-            cleanup.current();
+        const play = () => {
+            let getFullSketch = baseSketchFun || (c => c);
+
+            try {
+                myP5 = mie.lang[codeLang].play.call(this, getFullSketch(codeToRun), previewElem);
+            } catch (e) {
+                console.log(e);
+                setError(e.message);
+
+                // If we got an error, we don't have a valid p5 sketch, so we need
+                // to make a fake one with a remove function for cleanup
+                myP5 = {
+                    remove: () => {
+                        console.log('Removing empty...')
+                    }
+                }
+            }
         };
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [error]);
+
+        play();
+            
+        return () => {
+            myP5.remove();
+        };
+
+    }, [codeLang, baseSketchFun, codeToRun, error]); // codeToRun and error are the only ones that should actually change
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
 	};
+
+    const handleCodeChange = value => {
+        setUpdatedCode(value);
+    };
     
     return (
         <div className={`mini-editor-container ${props.horiz ? 'mini-editor-container--horizontal-style' : ''}`}>
@@ -126,7 +137,7 @@ const MiniEditor = props => {
                         <button
                             className={'mie-play'}
                             title={'run code'}
-                            onClick={() => play()}
+                            onClick={handlePlayClick}
                         >
                             <img src={playIcon} />
                         </button>
@@ -147,7 +158,7 @@ const MiniEditor = props => {
                             value={updatedCode}
                             theme={dracula}
                             extensions={[javascript()]}
-                            onChange={setUpdatedCode}
+                            onChange={handleCodeChange}
                         />
                     )}
                 </div>
