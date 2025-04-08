@@ -46,7 +46,9 @@ const MiniEditor = props => {
 	const play = (code) => {
         const codeToRun = code ?? updatedCode;
         setError(''); // Clear any previous errors when re-running the code
-        if (cleanup.current !== null) cleanup.current();
+        if (cleanup.current !== null) {
+            cleanup.current();
+        }
 
         try {
             console.log('creating canvas');
@@ -79,7 +81,7 @@ const MiniEditor = props => {
         };
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [error]);
 
 	const toggleEditor = () => {
 		setEditorVisible(!editorVisible);
