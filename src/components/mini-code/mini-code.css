@@ -47,6 +47,12 @@
   flex-direction: row;
 }
 
+.mie.horiz .mie-main.full {
+  @media (max-width: 780px) {
+    flex-direction: column;
+  }
+}
+
 .mie-title {
   display: flex;
   flex-direction: row;
@@ -126,6 +132,19 @@ button {
   width: unset;
 }
 
+.custom-height-flex-start {
+  justify-content: flex-start;
+  align-self: flex-start;
+
+  @media (max-width: 780px) {
+    align-self: center;
+  }
+}
+
+.mie.horiz .custom-height-flex-start {
+  width: fit-content;
+}
+
 .error-msg {
   color: red;
   text-align: center;
@@ -159,8 +178,8 @@ button {
 
 .cm-theme ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: rgba(200,200,200,.5);
-  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  background-color: rgba(200, 200, 200, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .mie.vert .mie-editor {

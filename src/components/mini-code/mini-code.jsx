@@ -104,9 +104,22 @@ const MiniEditor = props => {
     const handleCodeChange = value => {
         setUpdatedCode(value);
     };
+
+    let wh = {};
     
+    if (props.width) {
+        wh.width = props.width;
+    }
+
+    if (props.height) {
+        wh.height = props.height;
+    }
+
+
     return (
-        <div className={`mini-editor-container ${props.horiz ? 'mini-editor-container--horizontal-style' : ''}`}>
+        <div className={`mini-editor-container ${(props.horiz && !props.width) ? 'mini-editor-container--horizontal-style' : ''}`}
+            style={wh}
+        >
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}
                 style={{
@@ -150,9 +163,9 @@ const MiniEditor = props => {
                         </button>
                     </div>
                 </div>
-                <div className={'mie-main'}>
+                <div className={`mie-main ${(props.height || props.width) ? 'full' : ''}`}>
                     <div
-                        className={'mie-preview'}
+                        className={`mie-preview ${props.height ? 'custom-height-flex-start' : ''}`}
                         ref={previewElem}
                     >
                         {error && <span className='error-msg'>{error}</span>}

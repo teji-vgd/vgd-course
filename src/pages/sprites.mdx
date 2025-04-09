@@ -1,0 +1,104 @@
+import MiniEditor from '../components/mini-code/mini-code.jsx';
+import PlayIcon from '../components/inline-play-icon/inline-play-icon.jsx';
+import {mouseCircles} from '../sketches/setupExample.js'
+import {BrowserRouter as Router, NavLink} from 'react-router';
+import {
+    spriteStarter, 
+    spriteDimensions,
+    spriteFun,
+    spritePosition,
+    spriteX,
+    spriteY,
+    spriteMouseXY,
+    exploringSprites,
+    circleSprite, 
+    gravityBroken, 
+    gravityFixed
+} from '../sketches/sprites.js';
+
+## Sprites
+<div className='wrap-row two-col'>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        Sprites are interactive components of your game, this includes game characters, objects, walls, etc.
+        Anything the player may interact with is a sprite.
+
+        Use `new Sprite()` to create a sprite.
+        </div>
+        <MiniEditor horiz title={'Creating a Sprite'} code={spriteStarter} />
+    </div>
+
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        A sprite can have different characteristics that determine how it looks or even acts.
+
+        For example, adding a width `w` and height `h` to the sprite defines how big or small it is and whether it's a square or rectangle.
+        Try changing the numbers after `sprite.w =` and `sprite.h =` to see what happens to the sprite shape.
+        **Click <PlayIcon /> above to run your changed code.**
+        </div>
+        <MiniEditor horiz title={'Sprite Dimensions'} code={spriteDimensions} />
+    </div>
+    
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        Sprites can also be other shapes. For example, adding a diameter `d` to the sprite turns the sprite into a circle.
+        </div>
+        <MiniEditor horiz title={'Circle Sprite'} code={circleSprite} />
+    </div>
+
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        You can change where the sprite shows up on the screen by controlling its `x` and `y` positions.
+        </div>
+        <MiniEditor horiz title={'Sprite Position'} code={spritePosition} />
+    </div>
+    <div className='wrap-row'>
+        <div className='grouped-editors'>
+        <MiniEditor title={'Sprite X'} baseSketchFun={spriteFun} code={spriteX} />
+        <MiniEditor title={'Sprite Y'} baseSketchFun={spriteFun} code={spriteY} />
+        </div>
+    </div>
+</div>
+
+## World
+<div className='wrap-row two-col'>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+
+        Sprites interact in a world. The `world` contains properties that are helpful for adding game physics like gravity affecting how sprites fall down.
+
+        **Press <PlayIcon /> to see the gravity affect the sprite on the right.**
+
+        Try changing `world.gravity.y` to observe what happens to the sprite.
+        </div>
+
+        <MiniEditor horiz title={'Gravity'} code={gravityBroken} />
+    </div>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+        In the previous example, the sprite leaves a trail behind as it falls. This is because the sprite is secretly getting drawn to the screen over and over again at a rate of 60 times per second. So as it's falling the movement gets captured frame by frame. However, we're not telling the background to draw again and again along with the sprite.
+        </div>
+
+        <MiniEditor horiz title={'Gravity (Fixed)'} code={gravityFixed} />
+    </div>
+</div>
+
+## Mouse Input
+<div className='wrap-row two-col'>
+    <div className='writing-editor-group'>
+        <div className='writingSection'>
+            You can have your code start interacting with your computer's input such as your computer's mouse or trackpad.
+
+            The computer can detect and react to when the mouse is clicked and where the mouse pointer is on the screen.
+            Try making the sprite interact with your mouse using `mouse.x` and `mouse.y` as inputs.        
+        </div>
+        <MiniEditor horiz title={'Mouse XY'} code={spriteMouseXY} />
+    </div>
+    <NavLink to={`exploringSprites`}
+        className={({ isActive, isPending }) =>
+            isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
+            }
+    >
+        Exploring Sprites
+    </NavLink>
+</div>
