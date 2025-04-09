@@ -143,13 +143,6 @@ const MiniEditor = props => {
                         {props.title || 'Example Sketch'}
                     </div>
                     <div className={'mie-header-buttons'}>
-                        <button
-                            className={'mie-play'}
-                            title={'reset code'}
-                            onClick={() => reset()}
-                        >
-                            <img src={resetIcon} />
-                        </button>
                         { !props.editorDisabled &&
                             (<button 
                                 className={'mie-edit'}
@@ -162,6 +155,13 @@ const MiniEditor = props => {
                                 </img>
                             </button>)
                         }
+                        <button
+                            className={'mie-play'}
+                            title={'reset code'}
+                            onClick={() => reset()}
+                        >
+                            <img src={resetIcon} />
+                        </button>
                         <button
                             className={'mie-play'}
                             title={'run code'}
