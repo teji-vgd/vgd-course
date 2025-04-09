@@ -6,6 +6,8 @@ import Tutorials from './pages/tutorials.jsx';
 import Home from './pages/home.jsx';
 import Footer from './pages/footer.mdx';
 import GettingStarted from './pages/getting-started.jsx';
+import Sprites from './pages/sprites.jsx';
+import ExploringSprites from './pages/exploringSprites.jsx';
 import vgdLogo from '/vgd-logo-no-text.svg'
 
 const App = () => {
@@ -34,6 +36,20 @@ const App = () => {
           >
             Getting Started
           </NavLink>
+          <NavLink to={`sprites`}
+            className={({ isActive, isPending }) =>
+              isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
+            }
+          >
+            Sprites
+          </NavLink>
+          <NavLink to={`exploringSprites`}
+            className={({ isActive, isPending }) =>
+              isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
+            }
+          >
+            Exploring Sprites
+          </NavLink>
           {/* <NavLink to={`tutorials`}
             className={({ isActive, isPending }) =>
               isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
@@ -55,6 +71,9 @@ const App = () => {
               <Route path={'gettingStarted'} element={<GettingStarted/>} />
               <Route path={`tutorials`} element={<Tutorials />} />
               <Route path={`examples`} element={<LayoutExamples />} />
+              <Route path={`sprites`} element={<Sprites />} />
+              <Route path={`sprites/exploringSprites`} element={<ExploringSprites />} />
+              <Route path={`exploringSprites`} element={<ExploringSprites />} />
             </Routes>
         </div>
       </div>

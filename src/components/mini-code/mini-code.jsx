@@ -10,13 +10,15 @@ import iconEditorGrayed from '../../assets/terminal-icon-gray.svg';
 import iconEditorDark from '../../assets/terminal-icon-blue.svg';
 import playIcon from '../../assets/play-circle-blue.svg';
 import resetIcon from '../../assets/reset-icon-black.svg';
+import stopIcon from '../../assets/stop-circle.svg';
 import logo from '/vgd-pm-favicon.svg';
 
 const MiniEditor = props => {
     const {
         code,
         baseSketchFun,
-        lang
+        lang,
+        stopCode,
     } = props;
     
     const initialCode = code;
@@ -54,6 +56,12 @@ const MiniEditor = props => {
         setCodeToRun(updatedCode);
         // Ensure play runs when clicked even if nothing above has changed
         setPlayCount(c => c + 1);
+    };
+
+    const handleStopClick = () => {
+        if (stopCode) {
+            setCodeToRun(stopCode);
+        }
     };
 
     const reset = () => {
@@ -104,9 +112,22 @@ const MiniEditor = props => {
     const handleCodeChange = value => {
         setUpdatedCode(value);
     };
+
+    let wh = {};
     
+    if (props.width) {
+        wh.width = props.width;
+    }
+
+    if (props.height) {
+        wh.height = props.height;
+    }
+
+
     return (
-        <div className={`mini-editor-container ${props.horiz ? 'mini-editor-container--horizontal-style' : ''}`}>
+        <div className={`mini-editor-container ${(props.horiz && !props.width) ? 'mini-editor-container--horizontal-style' : ''}`}
+            style={wh}
+        >
             <div 
                 className={`mie ${codeLang} ${props.horiz ? 'horiz' : 'vert'}`}
                 style={{
@@ -122,13 +143,6 @@ const MiniEditor = props => {
                         {props.title || 'Example Sketch'}
                     </div>
                     <div className={'mie-header-buttons'}>
-                        <button
-                            className={'mie-play'}
-                            title={'reset code'}
-                            onClick={() => reset()}
-                        >
-                            <img src={resetIcon} />
-                        </button>
                         { !props.editorDisabled &&
                             (<button 
                                 className={'mie-edit'}
@@ -143,16 +157,30 @@ const MiniEditor = props => {
                         }
                         <button
                             className={'mie-play'}
+                            title={'reset code'}
+                            onClick={() => reset()}
+                        >
+                            <img src={resetIcon} />
+                        </button>
+                        <button
+                            className={'mie-play'}
                             title={'run code'}
                             onClick={handlePlayClick}
                         >
                             <img src={playIcon} />
                         </button>
+                        {stopCode && <button
+                            className={'mie-play'}
+                            title={'stop code'}
+                            onClick={handleStopClick}
+                        >
+                            <img src={stopIcon} />
+                        </button>}
                     </div>
                 </div>
-                <div className={'mie-main'}>
+                <div className={`mie-main ${(props.height || props.width) ? 'full' : ''}`}>
                     <div
-                        className={'mie-preview'}
+                        className={`mie-preview ${props.height ? 'custom-height-flex-start' : ''}`}
                         ref={previewElem}
                     >
                         {error && <span className='error-msg'>{error}</span>}
