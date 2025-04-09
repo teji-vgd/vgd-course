@@ -132,11 +132,19 @@ function setup() {
 function draw() {
   background(200);
 
-  sprite = new Sprite();
-  sprite.x = mouse.x;
-  sprite.y = mouse.y;
-
+  // sprite = new Sprite();
+  // sprite.x = mouse.x;
+  // sprite.y = mouse.y;
 }`;
+
+const exploringSpritesStop = 
+`let sprite;
+
+function setup() {
+  createCanvas(400, 300);
+  background(200);
+}
+`;
 
 // const mouseCircles = 
 // `function setup () {
@@ -158,6 +166,7 @@ export {
     spriteY,
     spriteMouseXY,
     exploringSprites,
+    exploringSpritesStop,
     gravityBroken,
     gravityFixed
     // mouseCircles
