@@ -79,9 +79,10 @@
   flex-direction: row;
   justify-content: flex-start;
   width: fit-content;
-  max-width: 70%;
+  max-width: 80%;
   border: 1px solid #aaaa;
   border-radius: 10px;
+  overflow-y: scroll;
 
   @media (max-width: 500px) {
     max-width: 100%;
