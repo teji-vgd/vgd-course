@@ -54,24 +54,24 @@ const hueRotate =
 
 
 const spriteStarter = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
-  sprite = new Sprite();
+  shape = new Sprite();
 }
 
 function draw () {
 }`;
 
 const spriteFun = code => {
-return `let sprite;
+return `let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
   
-  sprite = new Sprite();
+  shape = new Sprite();
   ${code}
 }
 
@@ -80,15 +80,15 @@ function draw () {
 };
 
 const spriteDimensions = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.w = 50;
-  sprite.h = 50;
+  shape = new Sprite();
+  shape.w = 50;
+  shape.h = 50;
 }
 
 function draw () {
@@ -96,14 +96,14 @@ function draw () {
 }`;
 
 const circleSprite = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.d = 50;
+  shape = new Sprite();
+  shape.d = 50;
 }
 
 function draw () {
@@ -111,15 +111,15 @@ function draw () {
 }`;
 
 const spritePosition = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.x = 50;
-  sprite.y = 50;
+  shape = new Sprite();
+  shape.x = 50;
+  shape.y = 50;
 }
 
 function draw () {
@@ -127,19 +127,19 @@ function draw () {
 }`;
 
 const spriteX = 
-`sprite.x = 50;`;
+`shape.x = 50;`;
 
 const spriteY = 
-`sprite.y = 50;`;
+`shape.y = 50;`;
 
 const gravityBroken = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
+  shape = new Sprite();
 
   world.gravity.y = 10;
 }
@@ -149,11 +149,11 @@ function draw () {
 }`;
 
 const gravityFixed = 
-`let sprite;
+`let shape;
 
 function setup() {
   createCanvas(200, 200);
-  sprite = new Sprite();
+  shape = new Sprite();
   world.gravity.y = 10;
 }
 
