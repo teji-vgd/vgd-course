@@ -169,100 +169,100 @@ These programs are called sketches.`]}),jsxRuntimeExports.jsx(O.p,{children:jsxR
 `]}),jsxRuntimeExports.jsx(O.p,{children:jsxRuntimeExports.jsxs(O.strong,{children:["Try changing the background color of the canvas by changing what's inside the ",jsxRuntimeExports.jsx(O.code,{children:"background()"})," function, using the three methods above."]})})]}),jsxRuntimeExports.jsx("div",{className:"wrap-row",children:jsxRuntimeExports.jsxs("div",{className:"grouped-editors",children:[jsxRuntimeExports.jsx(MiniEditor,{title:"Exploring Colors",baseSketchFun:exploringColorsFun,code:exploringColorsString}),jsxRuntimeExports.jsx(MiniEditor,{title:"Exploring Colors",baseSketchFun:exploringColorsFun,code:exploringColorsSingleNum}),jsxRuntimeExports.jsx(MiniEditor,{title:"Exploring Colors",baseSketchFun:exploringColorsFun,code:exploringColorsRGB})]})})]}),`
 `,jsxRuntimeExports.jsxs("div",{className:"wrap-row two-col",children:[jsxRuntimeExports.jsxs("div",{className:"writingSection",children:[jsxRuntimeExports.jsxs(O.h3,{children:["Game Functions:  ",jsxRuntimeExports.jsx(O.code,{children:"setup"})," and ",jsxRuntimeExports.jsx(O.code,{children:"draw"})]}),jsxRuntimeExports.jsx(O.p,{children:"A sketch has two main functions (these are named pieces of code that can be run over and over again)."}),jsxRuntimeExports.jsxs(O.p,{children:["The ",jsxRuntimeExports.jsx(O.code,{children:"setup"}),` function runs only once, whenever the play button is clicked or in this case whenever you make a change to your sketch.
 This makes the setup function good for any code we want to use to set up our games for the first time (like defining the pieces of a new level).`]}),jsxRuntimeExports.jsxs(O.p,{children:["The ",jsxRuntimeExports.jsx(O.code,{children:"draw"}),' function runs many many times. In game design, this is often called "the draw loop." The ',jsxRuntimeExports.jsx(O.code,{children:"draw"})," function runs and updates the canvas 60 times every second to create animations."]}),jsxRuntimeExports.jsxs(O.p,{children:["There is another helpful keyword ",jsxRuntimeExports.jsx(O.code,{children:"frameCount"})," which keeps tracks of how many frames have run so far (from the last time the code was run)."]}),jsxRuntimeExports.jsx(O.p,{children:jsxRuntimeExports.jsxs(O.strong,{children:["Press ",jsxRuntimeExports.jsx(PlayIcon,{})," to see the background color slowly change based on the ",jsxRuntimeExports.jsx(O.code,{children:"frameCount"})," as the draw loop runs."]})})]}),jsxRuntimeExports.jsx(MiniEditor,{title:"setup and draw",baseSketchFun:hueRotateFun,code:hueRotate})]}),`
-`]})}function MDXContent$2(E={}){const{wrapper:O}=E.components||{};return O?jsxRuntimeExports.jsx(O,{...E,children:jsxRuntimeExports.jsx(_createMdxContent$2,{...E})}):_createMdxContent$2(E)}const GettingStartedPage=()=>jsxRuntimeExports.jsx("div",{className:"home-main",children:jsxRuntimeExports.jsx(MDXContent$2,{})}),spriteStarter=`let sprite;
+`]})}function MDXContent$2(E={}){const{wrapper:O}=E.components||{};return O?jsxRuntimeExports.jsx(O,{...E,children:jsxRuntimeExports.jsx(_createMdxContent$2,{...E})}):_createMdxContent$2(E)}const GettingStartedPage=()=>jsxRuntimeExports.jsx("div",{className:"home-main",children:jsxRuntimeExports.jsx(MDXContent$2,{})}),spriteStarter=`let shape;
 
 function setup() {
   createCanvas(200, 200);
-  sprite = new Sprite();
+  shape = new Sprite();
 }
 
 function draw() {
-}`,spriteFun=E=>`let sprite;
+}`,spriteFun=E=>`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
   
-  sprite = new Sprite();
+  shape = new Sprite();
   ${E}
 }
 
 function draw() {
-}`,spriteDimensions=`let sprite;
+}`,spriteDimensions=`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.w = 50;
-  sprite.h = 50;
+  shape = new Sprite();
+  shape.w = 50;
+  shape.h = 50;
 }
 
 function draw() {
 
-}`,circleSprite=`let sprite;
+}`,circleSprite=`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.d = 50;
+  shape = new Sprite();
+  shape.d = 50;
 }
 
 function draw() {
 
-}`,spritePosition=`let sprite;
+}`,spritePosition=`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
-  sprite.x = 50;
-  sprite.y = 50;
+  shape = new Sprite();
+  shape.x = 50;
+  shape.y = 50;
 }
 
 function draw() {
 
-}`,spriteX="sprite.x = 50;",spriteY="sprite.y = 50;",gravityBroken=`let sprite;
+}`,spriteX="shape.x = 50;",spriteY="shape.y = 50;",gravityBroken=`let shape;
 
 function setup() {
   createCanvas(200, 200);
   background(200);
 
-  sprite = new Sprite();
+  shape = new Sprite();
 
   world.gravity.y = 10;
 }
 
 function draw() {
 
-}`,gravityFixed=`let sprite;
+}`,gravityFixed=`let shape;
 
 function setup() {
   createCanvas(200, 200);
-  sprite = new Sprite();
+  shape = new Sprite();
   world.gravity.y = 10;
 }
 
 function draw() {
   background(200);
-}`,spriteMouseXY=`let sprite;
+}`,spriteMouseXY=`let shape;
 
 function setup() {
   createCanvas(200, 200);
-  sprite = new Sprite();
+  shape = new Sprite();
 }
 
 function draw() {
   background(200);
   
-  sprite.x = mouse.x;
-  sprite.y = mouse.y;
+  shape.x = mouse.x;
+  shape.y = mouse.y;
 
-}`,exploringSprites=`let sprite;
+}`,exploringSprites=`let shape;
 
 function setup() {
   createCanvas(400, 300);
@@ -271,10 +271,10 @@ function setup() {
 function draw() {
   background(200);
 
-  // sprite = new Sprite();
-  // sprite.x = mouse.x;
-  // sprite.y = mouse.y;
-}`,exploringSpritesStop=`let sprite;
+  // shape = new Sprite();
+  // shape.x = mouse.x;
+  // shape.y = mouse.y;
+}`,exploringSpritesStop=`let shape;
 
 function setup() {
   createCanvas(400, 300);
