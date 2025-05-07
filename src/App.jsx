@@ -8,7 +8,8 @@ import Footer from './pages/footer.mdx';
 import GettingStarted from './pages/getting-started.jsx';
 import Sprites from './pages/sprites.jsx';
 import ExploringSprites from './pages/exploringSprites.jsx';
-import vgdLogo from '/vgd-logo-no-text.svg'
+import vgdLogo from '/vgd-logo-no-text.svg';
+import GameIcons from './pages/gameIcons.mdx';
 
 const App = () => {
 
@@ -64,6 +65,13 @@ const App = () => {
           >
             Editor Layout Examples
           </NavLink> */}
+          <NavLink to={`gameIcons`}
+            className={({ isActive, isPending }) =>
+              isPending ? "nav-button pending" : isActive ? "nav-button active" : "nav-button"
+            }
+          >
+            Game Icons
+          </NavLink>
         </nav>
         <div className={'page'}>
             <Routes>
@@ -74,6 +82,7 @@ const App = () => {
               <Route path={`sprites`} element={<Sprites />} />
               <Route path={`sprites/exploringSprites`} element={<ExploringSprites />} />
               <Route path={`exploringSprites`} element={<ExploringSprites />} />
+              <Route path={`gameIcons`} element={<GameIcons />} />
             </Routes>
         </div>
       </div>
